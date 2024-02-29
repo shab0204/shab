@@ -30,7 +30,7 @@ let numbersPush = []
 for(let i =1 ;i<=100;i++){
     if(i % 2===0){
         numbersPush.push(i)
-        console.log(numbersPush);
+        console.log(numbersPush);;
     }
 }
     
