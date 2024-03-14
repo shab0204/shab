@@ -37,7 +37,7 @@ ul.style.display = 'flex'
 ul.style.alignItems = 'center'
 ul.style.gap = '24px'
 
-const listItemTexts = ['HOME', 'HOME', 'HOME', 'HOME', 'HOME'];
+const listItemTexts = ['HOME', 'Шах', 'HOME', 'шаб', 'HOME'];
 listItemTexts.forEach(text => {
   const li = document.createElement('li');
   li.textContent = text;
