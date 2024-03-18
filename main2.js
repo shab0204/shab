@@ -609,18 +609,22 @@ const rootElement = document.getElementById('root2')
 const loadingSpan = document.createElement('img')
 loadingSpan.src = 'https://i.gifer.com/VAyR.gif'
 loadingSpan.style.display = 'none'
+
+let loadPost = 0
+const postRequest = 4
  async function getPosts() {
     try{
     loadingSpan.style = 'block'
-    const responce = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=4')
+    const responce = await fetch(`https://jsonplaceholder.typicode.com/posts?_start=${loadPost}&_limit=${postRequest}`)
        const data = await responce.json()
+       loadPost += data.length
             loadingSpan.style.display = 'none'
-            button.textContent = `Show Posts (${data.length})`;
+            button.textContent = `Show Posts (${loadPost})`;
             showposts(data)
         }
         catch(e){
         
-            ole.error('Ошибка:', error);
+          console.log('ощибка');
     }
             
         
@@ -660,7 +664,7 @@ mainDiv.appendChild(div)
 }
 
 const button = document.createElement('button')
-button.textContent = getPosts.length++
+
 rootElement.appendChild(loadingSpan)
 rootElement.appendChild(button)
 button.addEventListener('click', () => { 
