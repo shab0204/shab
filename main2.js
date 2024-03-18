@@ -481,59 +481,189 @@
 //     )
 3
 
-const users = [
-         { name: 'Махмуд', surname: 'Джамшудов', id: 1 },
-         { name: 'Умед', surname: 'Джамшудов', id: 2 },
-         { name: 'Аброр', surname: 'Джамшудов', id: 3 },
-         { name: 'Яъкуб', surname: 'Джамшудов', id: 4 },
-         { name: 'Борис', surname: 'Джамшудов', id: 5 },
-         { name: 'Али', surname: 'Джамшудов', id: 6 },
-         { name: 'Алишер', surname: 'Джамшудов', id: 7 }
+// const users = [
+//          { name: 'Махмуд', surname: 'Джамшудов', id: 1 },
+//          { name: 'Умед', surname: 'Джамшудов', id: 2 },
+//          { name: 'Аброр', surname: 'Джамшудов', id: 3 },
+//          { name: 'Яъкуб', surname: 'Джамшудов', id: 4 },
+//          { name: 'Борис', surname: 'Джамшудов', id: 5 },
+//          { name: 'Али', surname: 'Джамшудов', id: 6 },
+//          { name: 'Алишер', surname: 'Джамшудов', id: 7 }
     
-]
-let nextId = users.length+1
+// ]
+// let nextId = users.length+1
 
-const userForm = document.querySelector('#userForm')
-const inputName = document.querySelector('#name')
-const inputSurname = document.querySelector('#surname')
-const formBtn = document.querySelector('#formBtn')
-const usersList = document.querySelector('#usersList')
+// const userForm = document.querySelector('#userForm')
+// const inputName = document.querySelector('#name')
+// const inputSurname = document.querySelector('#surname')
+// const formBtn = document.querySelector('#formBtn')
+// const usersList = document.querySelector('#usersList')
 
-formBtn.addEventListener('click',()=>{
-    if(inputName.value.trim() === ''|| inputSurname.value.trim() === ''){
-        alert('пробуй')
-        return
-    }
-    const user = {
-        name:inputName.value.trim(),
-        surname:inputSurname.value.trim(),
-        id:nextId++
-    }
-    users.push(user)
-    inputName.value = ''
-    inputSurname.value = ''
+// formBtn.addEventListener('click',()=>{
+//     if(inputName.value.trim() === ''|| inputSurname.value.trim() === ''){
+//         alert('пробуй')
+//         return
+//     }
+//     const user = {
+//         name:inputName.value.trim(),
+//         surname:inputSurname.value.trim(),
+//         id:nextId++
+//     }
+//     users.push(user)
+//     inputName.value = ''
+//     inputSurname.value = ''
 
-    createUserList()
-})
+//     createUserList()
+// })
 
-function createUserList(){
-    usersList.innerHTML = ''
-    users.forEach(user=>{
-        const userDiv = document.createElement('div')
-        userDiv.textContent = `user: ${user.name}, surname: ${user.surname}, id:${user.id}`
+// function createUserList(){
+//     usersList.innerHTML = ''
+//     users.forEach(user=>{
+//         const userDiv = document.createElement('div')
+//         userDiv.textContent = `user: ${user.name}, surname: ${user.surname}, id:${user.id}`
 
-         const btnUserList = document.createElement('button')
-         btnUserList.textContent = 'удалить'
-    btnUserList.addEventListener('click',()=>{
-        userDiv.remove()
-    })
-    userDiv.appendChild(btnUserList)
+//          const btnUserList = document.createElement('button')
+//          btnUserList.textContent = 'удалить'
+//     btnUserList.addEventListener('click',()=>{
+//         userDiv.remove()
+//     })
+//     userDiv.appendChild(btnUserList)
 
-        usersList.appendChild(userDiv)
-    })
+//         usersList.appendChild(userDiv)
+//     })
 
    
   
  
+// }
+// createUserList()
+
+
+// methods http
+//  get
+//  post
+//https://jsonplaceholder.typicode.com/posts
+// const rootElement = document.getElementById('root2')
+
+// const button = document.createElement('button')
+// button.textContent = 'button'
+// rootElement.appendChild(button) 
+
+
+
+// // const URL = 'https://jsonplaceholder.typicode.com/posts'  
+// function getPosts(methods ,URL) {
+//     fetch(URL,{method:methods})
+//      .then(response => response.json())
+//      .then(json => console.log(json))
+
+//    }
+// button.addEventListener('click',()=>{
+//     getPosts('GET','https://jsonplaceholder.typicode.com/posts' )
+//  }
+//  )
+
+ 
+// const button = document.createElement('button') 
+// button.textContent = 'Get Posts' 
+ 
+// const loadingSpan = document.createElement('img') 
+// loadingSpan.src = 'https://i.gifer.com/VAyR.gif';
+// loadingSpan.style.display = 'none';
+// rootElement.appendChild(button) 
+// rootElement.appendChild(loadingSpan) 
+
+// async function getPosts() { 
+//  try { 
+//   loadingSpan.style.display = 'block';
+//   const response = await fetch('https://jsonplaceholder.typicode.com/posts') 
+//   const data = await response.json() 
+//   showPosts(data) 
+//   loadingSpan.style.display = 'none';
+//  } catch (e) { 
+//   console.log(e) 
+//   loadingSpan.style.display = 'none';
+//  } 
+// } 
+ 
+// function showPosts(array) { 
+//  array.map(el => { 
+//   const div = document.createElement('div') 
+//   rootElement.appendChild(div) 
+//   const h1 = document.createElement('h1') 
+//   h1.textContent = el.id 
+//   div.appendChild(h1) 
+//   const p = document.createElement('p') 
+//   p.textContent = el.title 
+//   div.appendChild(p) 
+//  }) 
+// } 
+ 
+// button.addEventListener('click', () => { 
+//  // getPosts('GET', 'https://jsonplaceholder.typicode.com/posts') 
+//  getPosts() 
+// })
+const rootElement = document.getElementById('root2') 
+
+
+const loadingSpan = document.createElement('img')
+loadingSpan.src = 'https://i.gifer.com/VAyR.gif'
+loadingSpan.style.display = 'none'
+ async function getPosts() {
+    try{
+    loadingSpan.style = 'block'
+    const responce = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=4')
+       const data = await responce.json()
+            loadingSpan.style.display = 'none'
+            button.textContent = `Show Posts (${data.length})`;
+            showposts(data)
+        }
+        catch(e){
+        
+            ole.error('Ошибка:', error);
+    }
+            
+        
 }
-createUserList()
+
+getPosts()
+
+function showposts(array){
+    array.forEach(el => {
+        
+const mainDiv = document.getElementById('div')
+const div = document.createElement('div')
+div.className = 'div'
+        const imgMain = document.createElement('img')
+        imgMain.src = './assets/div.png'
+        const title = document.createElement('h1')
+        title.className = 'title'
+        title.textContent = el.title
+        // const userId = document.createElement('p')
+        // userId.className = 'userId'
+        // userId.textContent = el.id
+        const body = document.createElement('p')
+        body.className = 'body'
+        body.textContent = el.body
+
+       
+        div.appendChild(imgMain)
+        div.appendChild(title)
+        // div.appendChild(userId)
+        div.appendChild(body)
+mainDiv.appendChild(div)
+
+    }
+   
+    );
+   
+}
+
+const button = document.createElement('button')
+button.textContent = getPosts.length++
+rootElement.appendChild(loadingSpan)
+rootElement.appendChild(button)
+button.addEventListener('click', () => { 
+ // getPosts('GET', 'https://jsonplaceholder.typicode.com/posts') 
+ getPosts() 
+})
