@@ -606,68 +606,129 @@
 const rootElement = document.getElementById('root2') 
 
 
-const loadingSpan = document.createElement('img')
-loadingSpan.src = 'https://i.gifer.com/VAyR.gif'
-loadingSpan.style.display = 'none'
+// const loadingSpan = document.createElement('img')
+// loadingSpan.src = 'https://i.gifer.com/VAyR.gif'
+// loadingSpan.style.display = 'none'
 
-let loadPost = 0
-const postRequest = 4
- async function getPosts() {
-    try{
-    loadingSpan.style = 'block'
-    const responce = await fetch(`https://jsonplaceholder.typicode.com/posts?_start=${loadPost}&_limit=${postRequest}`)
-       const data = await responce.json()
-       loadPost += data.length
-            loadingSpan.style.display = 'none'
-            button.textContent = `Show Posts (${loadPost})`;
-            showposts(data)
-        }
-        catch(e){
+// let loadPost = 0
+// const postRequest = 4
+//  async function getPosts() {
+//     try{
+//     loadingSpan.style = 'block'
+//     const responce = await fetch(`https://jsonplaceholder.typicode.com/posts?_start=${loadPost}&_limit=${postRequest}`)
+//        const data = await responce.json()
+//        loadPost += data.length
+//             loadingSpan.style.display = 'none'
+//             button.textContent = `Show Posts (${loadPost})`;
+//             showposts(data)
+//         }
+//         catch(e){
         
-          console.log('ощибка');
-    }
+//           console.log('ощибка');
+//     }
             
         
-}
+// }
 
-getPosts()
+// getPosts()
 
-function showposts(array){
-    array.forEach(el => {
+// function showposts(array){
+//     array.forEach(el => {
         
-const mainDiv = document.getElementById('div')
-const div = document.createElement('div')
-div.className = 'div'
-        const imgMain = document.createElement('img')
-        imgMain.src = './assets/div.png'
-        const title = document.createElement('h1')
-        title.className = 'title'
-        title.textContent = el.title
-        // const userId = document.createElement('p')
-        // userId.className = 'userId'
-        // userId.textContent = el.id
-        const body = document.createElement('p')
-        body.className = 'body'
-        body.textContent = el.body
+// const mainDiv = document.getElementById('div')
+// const div = document.createElement('div')
+// div.className = 'div'
+//         const imgMain = document.createElement('img')
+//         imgMain.src = './assets/div.png'
+//         const title = document.createElement('h1')
+//         title.className = 'title'
+//         title.textContent = el.title
+//         // const userId = document.createElement('p')
+//         // userId.className = 'userId'
+//         // userId.textContent = el.id
+//         const body = document.createElement('p')
+//         body.className = 'body'
+//         body.textContent = el.body
 
        
-        div.appendChild(imgMain)
-        div.appendChild(title)
-        // div.appendChild(userId)
-        div.appendChild(body)
-mainDiv.appendChild(div)
+//         div.appendChild(imgMain)
+//         div.appendChild(title)
+//         // div.appendChild(userId)
+//         div.appendChild(body)
+// mainDiv.appendChild(div)
 
-    }
+//     }
    
-    );
+//     );
    
+// }
+
+// const button = document.createElement('button')
+
+// rootElement.appendChild(loadingSpan)
+// rootElement.appendChild(button)
+// button.addEventListener('click', () => { 
+//  // getPosts('GET', 'https://jsonplaceholder.typicode.com/posts') 
+//  getPosts() 
+// })
+
+const input = document.getElementById('statusCodeInput')
+const button = document.getElementById('statusButton')
+const resultDiv = document.getElementById('result')
+const p = document.createElement('p')
+p.style.fontSize = '20px'
+resultDiv.appendChild(p)
+
+button.addEventListener('click',async () =>{
+
+const statusCode = input.value
+
+
+if(!statusCode){
+  alert('Введите статус!')
 }
+else if (statusCode >=1 && statusCode<=99){
+  alert('нет такого статуса!')
+  input = ''
+  return
+}
+try {
+  const response = await fetch(`https://httpbin.org/status/${statusCode}`)
+  const status = response.status
 
-const button = document.createElement('button')
+  let message = `статус: ${status}`;
+  
 
-rootElement.appendChild(loadingSpan)
-rootElement.appendChild(button)
-button.addEventListener('click', () => { 
- // getPosts('GET', 'https://jsonplaceholder.typicode.com/posts') 
- getPosts() 
+  
+  //  if (status >=100 && status<200){
+  //   message +='Информационный статус!'
+  //   resultDiv.style.backgroundColor = 'black'
+  // }
+   if(status>=200 && status<300){
+    message+= 'Успешный статус!'
+    resultDiv.style.backgroundColor = 'green'
+  }
+  else if(status>=300 && status<400 ){
+    message+='Статус о перенапровление'
+    resultDiv.style.backgroundColor = 'yellow'
+    
+  }
+  else if(status>=400 && status<500){
+    message+='Ощибка клиента'
+  resultDiv.style.backgroundColor = 'red'
+}
+else if(status>=500 && status<600){
+  message+='Ощибка сервера'
+  resultDiv.style.backgroundColor = 'black'
+}
+else {
+  message = 'Неизвестный статус.';
+  resultDiv.style.backgroundColor = 'grey';
+}
+p.textContent = message
+}
+catch(e){
+  console.log('Error',e);
+}
+input.value = ''
 })
